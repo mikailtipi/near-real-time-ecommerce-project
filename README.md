@@ -165,6 +165,20 @@ near-real-time-ecommerce-pipeline/
 ![Dashboard 3](docs/screenshots/dashboard_3.png)
 ![Dashboard 4](docs/screenshots/dashboard_4.png)
 
+### Apache Airflow
+
+![Airflow 1](docs/screenshots/airflow_1.png)
+![Airflow 2](docs/screenshots/airflow_2.png)
+
+### Apache Kafka
+
+![Kafka 1](docs/screenshots/kafka_1.png)
+![Kafka 2](docs/screenshots/kafka_2.png)
+
+### Apache Spark
+
+![Spark](docs/screenshots/spark.png)
+
 ## Quick Start
 
 ### Prerequisites

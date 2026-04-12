@@ -2,7 +2,7 @@
 
 > Near real-time data pipeline built with **Airflow · dbt · PostgreSQL · Streamlit · Docker**
 
-[![Pipeline CI](https://github.com/your-username/ecommerce-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/ecommerce-pipeline/actions)
+[![Pipeline CI](https://github.com/mikailtipi/near_real_time_ecommerce_project/actions/workflows/ci.yml/badge.svg)](https://github.com/mikailtipi/near_real_time_ecommerce_project/actions)
 
 ---
 
@@ -58,7 +58,7 @@
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/ecommerce-pipeline.git
+git clone https://github.com/mikailtipi/near_real_time_ecommerce_project.git
 cd ecommerce-pipeline
 
 # 2. Start all services

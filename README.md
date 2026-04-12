@@ -156,6 +156,15 @@ near-real-time-ecommerce-pipeline/
 
 ---
 
+## Screenshots
+
+### Streamlit Dashboard
+
+![Dashboard 1](docs/screenshots/dashboard_1.png)
+![Dashboard 2](docs/screenshots/dashboard_2.png)
+![Dashboard 3](docs/screenshots/dashboard_3.png)
+![Dashboard 4](docs/screenshots/dashboard_4.png)
+
 ## Quick Start
 
 ### Prerequisites

@@ -52,6 +52,7 @@
 - **Automated orchestration** — Airflow DAG runs daily: ingest → DQ check → dbt transform → dbt test
 - **Data quality monitoring** — 21 automated checks across all raw tables, results stored for trend analysis
 - **Dual transformation layer** — Both dbt (SQL) and PySpark used for mart-level aggregations
+- **Schema validation** — Confluent Schema Registry enforces Avro schemas on `orders-raw` topic — malformed messages are rejected before reaching the database
 - **CI/CD pipeline** — GitHub Actions runs full dbt test suite on every push
 
 ---
@@ -61,6 +62,7 @@
 | Layer | Tool | Purpose |
 |---|---|---|
 | Streaming | Apache Kafka 7.6 | Event queue for order events |
+| Schema Validation | Confluent Schema Registry | Avro schema enforcement on Kafka topics |
 | Orchestration | Apache Airflow 2.9 | Daily pipeline scheduling |
 | Transformation | dbt Core 1.8 | SQL-based data modeling |
 | Processing | Apache Spark 3.5 | Distributed metric aggregation |

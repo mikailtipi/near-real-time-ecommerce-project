@@ -40,11 +40,12 @@ jobs:
       - name: Init database schema
         env:
           PGPASSWORD: pipeline
-        run: psql -h localhost -U pipeline -d ecommerce -f scripts/init_db.sh || true
+        run: psql -h localhost -U pipeline -d ecommerce -f scripts/init_postgres.sql || true
 
       - name: Seed data
         env:
           DB_HOST: localhost
+          DB_PORT: 5432
           DB_USER: pipeline
           DB_PASSWORD: pipeline
           DB_NAME: ecommerce
@@ -53,6 +54,7 @@ jobs:
       - name: Run DQ checks
         env:
           DB_HOST: localhost
+          DB_PORT: 5432
           DB_USER: pipeline
           DB_PASSWORD: pipeline
           DB_NAME: ecommerce

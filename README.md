@@ -4,7 +4,7 @@
 > 
 > Live order events enriched with real-time weather data (OpenWeatherMap API) and country metadata (RestCountries API), streamed through Kafka, orchestrated by Airflow, transformed by dbt, aggregated by Spark, and visualized on a live dashboard.
 
-[![Pipeline CI](https://github.com/mikailtipi/near_real_time_ecommerce_project/actions/workflows/ci.yml/badge.svg)](https://github.com/mikailtipi/near_real_time_ecommerce_project/actions)
+[![Pipeline CI](https://github.com/mikailtipi/near-real-time-ecommerce-project/actions/workflows/ci.yml/badge.svg)](https://github.com/mikailtipi/near-real-time-ecommerce-project/actions)
 
 ---
 

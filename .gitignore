@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+logs/
+*.log
+.DS_Store
+airflow/logs/
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/.user.yml

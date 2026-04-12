@@ -1,0 +1,69 @@
+name: Pipeline CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt-test:
+    name: dbt tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: pipeline
+          POSTGRES_PASSWORD: pipeline
+          POSTGRES_DB: ecommerce
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install dbt-postgres psycopg2-binary faker
+
+      - name: Init database schema
+        env:
+          PGPASSWORD: pipeline
+        run: psql -h localhost -U pipeline -d ecommerce -f scripts/init_db.sh || true
+
+      - name: Seed data
+        env:
+          DB_HOST: localhost
+          DB_USER: pipeline
+          DB_PASSWORD: pipeline
+          DB_NAME: ecommerce
+        run: python ingestion/generate_orders.py --mode seed
+
+      - name: Run DQ checks
+        env:
+          DB_HOST: localhost
+          DB_USER: pipeline
+          DB_PASSWORD: pipeline
+          DB_NAME: ecommerce
+        run: python data_quality/dq_check.py --no-save
+
+      - name: dbt run
+        working-directory: dbt_project
+        env:
+          DB_HOST: localhost
+        run: dbt run --profiles-dir . --target ci
+
+      - name: dbt test
+        working-directory: dbt_project
+        run: dbt test --profiles-dir . --target ci

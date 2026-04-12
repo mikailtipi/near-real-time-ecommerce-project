@@ -289,6 +289,7 @@ DB_HOST=localhost DB_PORT=5433 DB_USER=pipeline DB_PASSWORD=pipeline DB_NAME=eco
 - **Kafka offset management** — `auto_offset_reset="latest"` vs `"earliest"` significantly affects consumer behavior on restart
 - **dbt schema routing** — Default schema prefix behavior requires a custom `generate_schema_name` macro to write to exact schema names
 - **API caching strategy** — Caching weather data per-city for 5 minutes reduces API calls by ~98% while keeping data fresh enough for correlation analysis
+- **Zookeeper vs KRaft** — Kafka 3.x introduced KRaft mode, eliminating the need for Zookeeper. This project uses Confluent 7.6 which still requires Zookeeper for cluster coordination (broker discovery, leader election, partition metadata). A future improvement would be migrating to KRaft mode.
 - **Schema Registry placement** — Running Schema Registry validation at the Kafka layer (before the consumer) means malformed messages never touch the database. This is far cheaper than catching bad data after it lands in raw tables.
 - **Airflow task isolation** — Each task runs in its own subprocess; Python packages must be installed in the Airflow image, not just locally
 - **DQ before transform** — Running data quality checks on raw data *before* dbt prevents silent bad data flowing into mart tables

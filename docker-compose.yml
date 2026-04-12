@@ -97,6 +97,7 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
     networks:
       - pipeline-net
 
@@ -123,6 +124,20 @@ services:
       - spark-master
     volumes:
       - ./spark:/opt/spark-apps
+    networks:
+      - pipeline-net
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.6.0
+    platform: linux/amd64
+    depends_on:
+      - kafka
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
     networks:
       - pipeline-net
 

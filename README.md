@@ -75,6 +75,17 @@
 
 ---
 
+## Query Results & Analytics Insights
+
+### Weather vs Order Correlation
+![Weather Correlation](docs/screenshots/query_weather_correlation.png)
+
+### Top Cities by Order Volume
+![Top Cities](docs/screenshots/query_top_cities.png)
+
+### Daily Revenue Trend
+![Daily Revenue](docs/screenshots/query_daily_revenue.png)
+
 ## Medallion Architecture
 
 This project follows the **Medallion Architecture** (Bronze → Silver → Gold) pattern:
@@ -172,10 +183,10 @@ near-real-time-ecommerce-pipeline/
 
 ### Streamlit Dashboard
 
-![Dashboard 1](docs/screenshots/dashboard_1.png)
-![Dashboard 2](docs/screenshots/dashboard_2.png)
-![Dashboard 3](docs/screenshots/dashboard_3.png)
-![Dashboard 4](docs/screenshots/dashboard_4.png)
+![Dashboard](docs/screenshots/dashboard_main.png)
+
+
+
 
 ### Apache Airflow
 

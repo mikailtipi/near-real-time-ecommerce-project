@@ -62,7 +62,7 @@
 | Layer | Tool | Purpose |
 |---|---|---|
 | Streaming | Apache Kafka 7.6 | Event queue for order events |
-| Schema Validation | Confluent Schema Registry | Avro schema enforcement on Kafka topics |
+| Schema Validation | Confluent Schema Registry 7.6 | Avro schema enforcement on Kafka topics |
 | Orchestration | Apache Airflow 2.9 | Daily pipeline scheduling |
 | Transformation | dbt Core 1.8 | SQL-based data modeling |
 | Processing | Apache Spark 3.5 | Distributed metric aggregation |

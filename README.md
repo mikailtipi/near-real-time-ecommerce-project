@@ -156,4 +156,4 @@ Building this pipeline end-to-end surfaced a few non-obvious things:
 ## About
 
 Built as a portfolio project to demonstrate end-to-end data engineering skills for EU-based roles.
-Connect with me on [LinkedIn](https://linkedin.com/in/your-profile).
+Connect with me on [LinkedIn](https://linkedin.com/in/mikailtipi).

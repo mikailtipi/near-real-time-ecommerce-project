@@ -75,6 +75,18 @@
 
 ---
 
+## Medallion Architecture
+
+This project follows the **Medallion Architecture** (Bronze → Silver → Gold) pattern:
+
+| Layer | Schema | Description |
+|---|---|---|
+| 🥉 Bronze (Raw) | `raw` | Data lands here exactly as received — no transformations, no cleaning. Kafka consumer writes here directly. May contain nulls, duplicates, or inconsistencies. |
+| 🥈 Silver (Staging) | `staging` | dbt cleans and standardizes raw data. Type casts, derived fields (`delivery_days`, `is_late`), null filtering. Stored as views — computed on demand. |
+| 🥇 Gold (Marts) | `marts` | Aggregated business metrics. Daily KPIs: revenue, AOV, return rate, delivery performance. Stored as physical tables. Dashboard reads from here. |
+
+Data quality checks run on the Bronze layer **before** Silver transformation — preventing bad data from ever reaching the Gold layer.
+
 ## Data Flow
 
 ### 1. Ingestion (Near Real-Time)
@@ -171,6 +183,9 @@ near-real-time-ecommerce-pipeline/
 ![Airflow 2](docs/screenshots/airflow_2.png)
 
 ### Apache Kafka
+
+![Kafka Producer](docs/screenshots/kafka_producer.png)
+![Kafka Consumer](docs/screenshots/kafka_consumer.png)
 
 ![Kafka 1](docs/screenshots/kafka_1.png)
 ![Kafka 2](docs/screenshots/kafka_2.png)

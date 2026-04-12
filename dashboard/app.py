@@ -183,7 +183,7 @@ with col5:
 st.divider()
 
 # ── Hourly Charts ──────────────────────────────────────────────────────────────
-st.subheader("⏱ Saatlik sipariş & revenue (son 48 saat)")
+st.subheader("⏱ Hourly orders & revenue (last 48 hours)")
 
 if not hourly_df.empty:
     hourly_sorted = hourly_df.sort_values("hour")
@@ -193,7 +193,7 @@ if not hourly_df.empty:
         fig = px.bar(
             hourly_sorted, x="hour", y="total_orders",
             color_discrete_sequence=["#4F8EF7"],
-            labels={"hour": "", "total_orders": "Sipariş sayısı"},
+            labels={"hour": "", "total_orders": "Order count"},
         )
         fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=260)
         st.plotly_chart(fig, use_container_width=True)
@@ -207,7 +207,7 @@ if not hourly_df.empty:
         fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=260)
         st.plotly_chart(fig, use_container_width=True)
 else:
-    st.info("Henüz saatlik veri yok — producer'ı çalıştır.")
+    st.info("No hourly data yet — start the producer.")
 
 st.divider()
 
@@ -215,7 +215,7 @@ st.divider()
 col_left, col_right = st.columns(2)
 
 with col_left:
-    st.subheader("🌤 Hava durumu vs sipariş sayısı")
+    st.subheader("🌤 Weather condition vs order volume")
     try:
         weather_df = load_weather_metrics()
         if not weather_df.empty:
@@ -223,17 +223,17 @@ with col_left:
                 weather_df, x="weather_condition", y="total_orders",
                 color="avg_temp",
                 color_continuous_scale="RdYlBu_r",
-                labels={"weather_condition": "Hava durumu", "total_orders": "Sipariş", "avg_temp": "Ort. °C"},
+                labels={"weather_condition": "Weather condition", "total_orders": "Orders", "avg_temp": "Avg °C"},
             )
             fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=300)
             st.plotly_chart(fig, use_container_width=True)
         else:
-            st.info("Hava durumu verisi yok — hybrid producer'ı çalıştır.")
+            st.info("No weather data yet — start the hybrid producer.")
     except Exception:
-        st.info("Hava durumu verisi yok — hybrid producer'ı çalıştır.")
+        st.info("No weather data yet — start the hybrid producer.")
 
 with col_right:
-    st.subheader("🗺 Şehir bazlı sipariş haritası")
+    st.subheader("🗺 City-level order map")
     try:
         city_df = load_city_metrics()
         if not city_df.empty:
@@ -246,19 +246,19 @@ with col_right:
                 hover_data={"country_name": True, "total_orders": True, "gross_revenue": True},
                 color_continuous_scale="Blues",
                 projection="natural earth",
-                labels={"gross_revenue": "Revenue ($)", "total_orders": "Sipariş"},
+                labels={"gross_revenue": "Revenue ($)", "total_orders": "Orders"},
             )
             fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=300)
             st.plotly_chart(fig, use_container_width=True)
         else:
-            st.info("Şehir verisi yok — hybrid producer'ı çalıştır.")
+            st.info("No city data yet — start the hybrid producer.")
     except Exception:
-        st.info("Şehir verisi yok — hybrid producer'ı çalıştır.")
+        st.info("No city data yet — start the hybrid producer.")
 
 st.divider()
 
 # ── Daily Revenue Trend ────────────────────────────────────────────────────────
-st.subheader("📈 Günlük revenue trendi (son 30 gün)")
+st.subheader("📈 Daily revenue trend (last 30 days)")
 if not daily_df.empty:
     chart_df = daily_df.sort_values("order_date").tail(30)
     fig = px.area(
@@ -272,7 +272,7 @@ if not daily_df.empty:
 st.divider()
 
 # ── Live Feed ──────────────────────────────────────────────────────────────────
-st.subheader("⚡ Son 1 saatin canlı akışı")
+st.subheader("⚡ Live order feed (last 1 hour)")
 try:
     live_df = load_live_feed()
     if not live_df.empty:
@@ -283,14 +283,14 @@ try:
             hide_index=True,
         )
     else:
-        st.info("Son 1 saatte sipariş yok.")
+        st.info("No orders in the last hour.")
 except Exception:
-    st.info("Canlı akış verisi yok.")
+    st.info("No live feed data available.")
 
 st.divider()
 
 # ── DQ Results ────────────────────────────────────────────────────────────────
-st.subheader("✅ Son data quality çalışması")
+st.subheader("✅ Latest data quality run")
 try:
     dq_df = load_dq_results()
     if not dq_df.empty:
@@ -307,6 +307,6 @@ try:
             hide_index=True,
         )
     else:
-        st.info("DQ sonucu yok — pipeline'ı çalıştır.")
+        st.info("No DQ results yet — run the pipeline first.")
 except Exception:
-    st.info("DQ tablosu bulunamadı.")
+    st.info("DQ results table not found.")

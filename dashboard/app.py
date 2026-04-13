@@ -2,11 +2,11 @@
 dashboard/app.py
 ----------------
 Enhanced real-time dashboard:
-  - 5 dakikada bir auto-refresh
-  - Saatlik siparis & revenue chart
-  - Hava durumu vs siparis korelasyonu
-  - Sehir bazli harita
-  - DQ sonuclari
+  - Auto-refresh every 5 minutes
+  - Hourly orders & revenue chart
+  - Weather vs order correlation
+  - City-level map
+  - DQ results
 """
 
 import os

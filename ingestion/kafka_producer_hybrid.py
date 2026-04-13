@@ -2,12 +2,12 @@
 ingestion/kafka_producer_hybrid.py
 -----------------------------------
 Hybrid producer:
-  - Faker ile siparis uretir
-  - RestCountries API ile gercek ulke/sehir verisi ceker
-  - OpenWeatherMap API ile anlık hava durumu ekler
-  - Hepsini birlestirip Kafka 'orders-raw' topic'ine gonderir
+  - Generates orders with Faker
+  - Fetches real country/city data from RestCountries API
+  - Enriches each order with live weather data from OpenWeatherMap API
+  - Publishes enriched events to Kafka orders-raw topic
 
-Kullanim:
+Usage:
   OPENWEATHER_API_KEY=xxx KAFKA_BOOTSTRAP=localhost:9092 python ingestion/kafka_producer_hybrid.py
 """
 

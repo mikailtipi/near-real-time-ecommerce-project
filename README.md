@@ -298,6 +298,6 @@ DB_HOST=localhost DB_PORT=5433 DB_USER=pipeline DB_PASSWORD=pipeline DB_NAME=eco
 
 ## About
 
-Built as a portfolio project to demonstrate end-to-end data engineering skills for EU-based roles.
+Thank you for reading! Feel free to reach out.
 
-Connect: [LinkedIn](https://linkedin.com/in/mikailtipi) · [GitHub](https://github.com/mikailtipi)
+Connect: [LinkedIn](https://linkedin.com/in/mikailtipi) · [GitHub](https://github.com/mikailtipi) · [Email](mailto:mkltipi@gmail.com)
